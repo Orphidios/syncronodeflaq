@@ -1,0 +1,22 @@
+extends layout
+block page_content
+	div#start
+		div#error.alert.alert-danger
+			strong Code Invalide :  
+			span#errorContain
+		h3 Enter a code :
+		div#loading.alert.alert-info Loading... 
+		div#ready
+			div.input-group
+				span.input-group-addon Code :
+				input#code.form-control(type="text", placeholder="")
+				span.input-group-btn
+					button#submiteCode.btn.btn-default(type="button") Valider
+		div#connect.alert.alert-info
+			strong Info :  
+			span#connectContain Waiting game for start You are connected to :
+	div#game
+		button.btn.btn-default(type="button") Action
+	link(href="/css/mobile.css", rel="stylesheet")
+	script(src="http://192.168.10.14:3000/socket.io/socket.io.js")
+	script(src="/js/socketMobile.js")

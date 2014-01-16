@@ -1,0 +1,12 @@
+extends layout
+
+block page_content
+	if (!session.logged)
+		div#start
+			h1 Code :
+			h3#roomId
+			button#launch.btn.btn-success(type="button") Launch Game !
+		div#game
+
+		script(src="/socket.io/socket.io.js")
+		script(src="/js/socketClient.js")

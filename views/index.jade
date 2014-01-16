@@ -1,0 +1,6 @@
+extends layout
+
+block page_content
+	if (!session.logged)
+		h3 Create game !
+		a.btn.btn-default.btn-lg(href="/rooms") Create game !
