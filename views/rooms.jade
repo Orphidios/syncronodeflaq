@@ -2,6 +2,7 @@ extends layout
 
 block page_content
 	if (!session.logged)
+		div#loading.alert.alert-info Loading...
 		div#start
 			h1 Code :
 			h3#roomId

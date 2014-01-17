@@ -14,4 +14,4 @@ var config = require('./config')(app, express, io);
 require('./routes/routes')(app);
 
 // Listening port 3000
-server.listen(process.env.PORT, process.env.IP);
+server.listen(process.env.PORT || 3000, process.env.IP || "192.168.10.14");

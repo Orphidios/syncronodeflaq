@@ -6,6 +6,8 @@ socket.emit('newRoom');
 // when the server emits 'roomConnect', this listens and executes
 socket.on('roomConnect', function (roomId){
 	console.log("your are part of the room " + roomId);
+	document.getElementById("start").style.display = 'inline';
+	document.getElementById("loading").style.display = 'none';
 	document.getElementById("roomId").innerHTML = roomId;
 });
 

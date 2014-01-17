@@ -5,6 +5,6 @@ body {
 	padding: 40px 15px;
 }
 
-#launch, #game {
+#launch, #game, #start {
 	display: none;
 }
