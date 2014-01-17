@@ -5,8 +5,7 @@
         "express": "~3.4.7",
         "socket.io": "~0.9.16",
         "ent": "~0.1.0",
-        "jade": "~1.1.4",
-        "nodemon": "~1.0.8"
+        "jade": "~1.1.4"
     },
     "author": "Orphidios <ripoche.sylvain.isart@gmail.com",
     "description": "Syncro mobile browser avec socket io"
