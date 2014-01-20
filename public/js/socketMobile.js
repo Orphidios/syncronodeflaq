@@ -2,6 +2,7 @@
 var socket = io.connect();
 
 window.onload = function() {
+	console.log('mobile connection');
 	// Send a message to server
 	socket.emit('tryConnectionMobile');
 };

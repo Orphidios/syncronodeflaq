@@ -4,7 +4,3 @@ body {
 .starter-template {
 	padding: 40px 15px;
 }
-
-#launch, #game, #start {
-	display: none;
-}

@@ -1,13 +1,15 @@
 extends layout
 
 block page_content
-	if (!session.logged)
-		div#loading.alert.alert-info Loading...
-		div#start
-			h1 Code :
-			h3#roomId
-			button#launch.btn.btn-success(type="button") Launch Game !
-		div#game
-
-		script(src="/socket.io/socket.io.js")
-		script(src="/js/socketClient.js")
+	div#loading.alert.alert-info Loading...
+	div#start
+		h1 Code :
+		h3#roomId
+		button#launch.btn.btn-success(type="button") Launch Game !
+	div#game
+		canvas#gameCanvas
+	link(href="/css/rooms.css", rel="stylesheet")
+	script(src="/socket.io/socket.io.js")
+	script(src="/js/client/game.js")
+	script(src="/js/client/socketConfig.js")
+	script(src="/js/client/windowInit.js")
