@@ -14,7 +14,6 @@ SocketConfig = function (socket, game) {
 
 	// when the server emits 'roomConnect', this listens and executes
 	socket.on('roomConnect', function (roomId){
-		console.log("MSG : SERVER --> your are part of the room " + roomId);
 		startDiv.style.display = 'inline';
 		loadingDiv.style.display = 'none';
 		roomIdDiv.innerHTML = roomId;
@@ -34,7 +33,6 @@ SocketConfig = function (socket, game) {
 
 	// when the server emits 'newPlayer', this listens and executes
 	socket.on('position', function (id, position) {
-		console.log('MSG : SERVER --> playerAction client id = ' + id);
 		var newLeft = 500 + position*400;
 		document.getElementById(id).style.left = newLeft+"px";
 	});
