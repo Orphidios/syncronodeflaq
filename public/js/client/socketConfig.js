@@ -26,17 +26,17 @@ SocketConfig = function (socket, game) {
 		players.push(clientId);
 
 		// If there is at least 2 player you can start the game
-		if (players.length > 1) {
+		if (players.length > 0) {
 			launchDiv.style.display = "inline";
 			launchDiv.onclick = startGame;
 		}
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('playerAction', function (id) {
+	socket.on('position', function (id, position) {
 		console.log('MSG : SERVER --> playerAction client id = ' + id);
-		var newTop = (Math.random()*500|0)+250;
-		document.getElementById(id).style.top = newTop+"px";
+		var newLeft = 500 + position*400;
+		document.getElementById(id).style.left = newLeft+"px";
 	});
 
 	// Start the game (2 player needed)

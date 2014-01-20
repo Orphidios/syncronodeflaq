@@ -101,9 +101,8 @@ module.exports = function(app, express, io) {
 				socket.emit('connectionOk');
 			});
 
-			socket.on('gameAction', function () {
-				console.log('playerAction RID ' + socket.roomId);
-				socket.broadcast.to(socket.roomId).emit('playerAction', socket.clientId);
+			socket.on('inputPosition', function (position) {
+				socket.broadcast.to(socket.roomId).emit('position', socket.clientId, position);
 			});		
 		});
 	});

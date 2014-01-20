@@ -4,32 +4,20 @@
 
 // Var
 var socket = io.connect();
-var game = new Game();
+var game = new Game(socket);
 
 //Fonctions de synchronisation d'affichage
-window.requestAnimFrame = (
-	function(){
-		return  window.requestAnimationFrame ||
-		window.webkitRequestAnimationFrame ||
-		window.mozRequestAnimationFrame    ||
-		window.oRequestAnimationFrame      ||
-		window.msRequestAnimationFrame     ||
-		function(callback, element){
-			window.setTimeout(callback, 1000 / 1);
-		};
-	}
-)();
+window.requestAnimFrame = function(callback, element) {
+	window.setTimeout(callback, 1000 / 30);
+};
 
 window.onEachFrame = function(cb) {
     var _cb = function() { cb(); requestAnimFrame(_cb); };
     _cb();
-}
+};
 
 //initialisation du canvas et lancement de la boucle
-window.onload = function(){
-	// Init game
-	game.init();
-	
+window.onload = function(){	
 	// Configure socket with game;
 	SocketConfig(socket, game);
 }
