@@ -8,7 +8,7 @@ var game = new Game(socket);
 
 //Fonctions de synchronisation d'affichage
 window.requestAnimFrame = function(callback, element) {
-	window.setTimeout(callback, 1000 / 15);
+	window.setTimeout(callback, 1000 / 30);
 };
 
 window.onEachFrame = function(cb) {

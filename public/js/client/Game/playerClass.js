@@ -14,7 +14,8 @@ Player.prototype.update = function() {
 	// var dltAngSpd = this.angularAcc*this.force*deltaTime;
 	// this.angularSpd = Math.min(this.angularSpd + dltAngSpd, this.maxAngSpd);
 	var dltPos = this.angTarget-this.angularPos;
-	this.angularSpd = Math.sign(Math.abs(dltPos)>0.07?dltPos:0)*this.maxAngSpd;
+	console.log(dltPos);
+	this.angularSpd = Math.sign(Math.abs(dltPos)>0.02?dltPos:0)*this.maxAngSpd;
 	var dltAngPos = this.angularSpd*deltaTime;
 	this.angularPos += dltAngPos;
 	// if (this.force == 0) {
