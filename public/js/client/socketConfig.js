@@ -2,8 +2,7 @@ SocketConfig = function (socket, game) {
 	console.log('CALL --> Socket Configuration');
 
 	// get players in game and get div
-	var players = game.players
-	 ,	startDiv = document.getElementById("start")
+	var	startDiv = document.getElementById("start")
 	 ,	loadingDiv = document.getElementById("loading")
 	 ,	roomIdDiv = document.getElementById("roomId")
 	 ,	launchDiv = document.getElementById("launch")
@@ -22,19 +21,18 @@ SocketConfig = function (socket, game) {
 	// when the server emits 'newPlayer', this listens and executes
 	socket.on('newPlayer', function (clientId) {
 		// Add player to the game
-		players.push(clientId);
+		game.addPlayer(clientId);
 
 		// If there is at least 2 player you can start the game
-		if (players.length > 0) {
+		if (game.players.length > 0) {
 			launchDiv.style.display = "inline";
 			launchDiv.onclick = startGame;
 		}
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('position', function (id, position) {
-		var newLeft = 500 + position*400;
-		document.getElementById(id).style.left = newLeft+"px";
+	socket.on('position', function (id, force) {
+		game.inputPlayer(id, force);
 	});
 
 	// Start the game (2 player needed)
@@ -42,15 +40,17 @@ SocketConfig = function (socket, game) {
 		startDiv.style.display = "none";
 		gameDiv.style.display = "inline";
 		socket.emit('startGame');
-		for(var i=0; i<players.length; i++) {
-			var div = document.createElement('div');
-			div.style.width = div.style.height = "50px";
-			div.style.position = "fixed";
-			div.style.top = "250px";
-			div.style.left = "500px";
-			div.style.backgroundColor = 'black';
-			div.id = players[i];
-			gameDiv.appendChild(div);
-		}
+		startLoop();
+		console.log('startLoop()');
+		// for(var i=0; i<players.length; i++) {
+		// 	var div = document.createElement('div');
+		// 	div.style.width = div.style.height = "50px";
+		// 	div.style.position = "fixed";
+		// 	div.style.top = "250px";
+		// 	div.style.left = "500px";
+		// 	div.style.backgroundColor = 'black';
+		// 	div.id = players[i];
+		// 	gameDiv.appendChild(div);
+		// }
 	};
 }

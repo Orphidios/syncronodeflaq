@@ -6,6 +6,10 @@
 var socket = io.connect();
 var game = new Game();
 
+Math.sign = function (x) {
+    return typeof x === 'number' ? x ? x < 0 ? -1 : 1 : x === x ? 0 : NaN : NaN;
+};
+
 //Fonctions de synchronisation d'affichage
 window.requestAnimFrame = (
 	function(){

@@ -24,5 +24,5 @@ InputManager = function () {
 };
 
 InputManager.prototype.getInput = function() {
-	return Math.max(Math.min(this.positionX, 0.5), -0.5);
+	return -Math.max(Math.min(this.positionX, 0.5), -0.5);
 };
