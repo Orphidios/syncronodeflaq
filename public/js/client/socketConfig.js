@@ -13,6 +13,7 @@ SocketConfig = function (socket, game) {
 
 	// when the server emits 'roomConnect', this listens and executes
 	socket.on('roomConnect', function (roomId){
+		console.log('you a create room. Id : ' + roomId);
 		startDiv.style.display = 'inline';
 		loadingDiv.style.display = 'none';
 		roomIdDiv.innerHTML = roomId;
@@ -20,7 +21,7 @@ SocketConfig = function (socket, game) {
 
 	// when the server emits 'newPlayer', this listens and executes
 	socket.on('newPlayer', function (clientId) {
-		console.log('newPlayer');
+		console.log('newPlayer. Id : ' + clientId);
 		// Add player to the game
 		game.addPlayer(clientId);
 
