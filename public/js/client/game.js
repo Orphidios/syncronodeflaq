@@ -2,6 +2,7 @@ Game = function () {
 	console.log('CALL --> Game Constructor');
 	this.players = [];
 	this.mainCanvas = new Canvas(800, 600, "gameCanvas");
+	this.force = null;
 };
 
 // Call for initialisation;
@@ -28,9 +29,9 @@ Game.prototype.render = function(canvas) {
 	}		
 };
 
-Game.prototype.inputPlayer = function(id, force) {
+Game.prototype.inputPlayer = function(id, position) {
 	var player = this.getPlayerById(id);
-	player.applyForce(force);
+	player.setPosition(position);
 };
 
 Game.prototype.addPlayer = function(id) {
@@ -39,7 +40,7 @@ Game.prototype.addPlayer = function(id) {
 
 Game.prototype.getPlayerById = function(playerId) {
 	for (var i = 0; i < this.players.length; i++ ) {
-		if(this.players[i].id = playerId)
+		if(this.players[i].playerId == playerId)
 			return this.players[i];
 	}
 };

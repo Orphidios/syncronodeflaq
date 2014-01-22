@@ -13,5 +13,4 @@ Game.prototype.loop = function() {
 
 Game.prototype.sendInputs = function() {
 	socket.emit('inputPosition', this.inputManager.getInput());
-	console.log(this.inputManager.getInput());
 };

@@ -1,32 +1,33 @@
 Player = function (playerId) {
-	this.id = playerId;
-
-	this.angularPos = Math.PI/2;
-	this.angularSpd = 0;
-	this.maxAngSpd = Math.PI;
-	this.angularAcc = Math.PI*2;
-	this.force = 0;
-	this.angTarget = 0;
+	this.playerId = playerId;
+	this.targetPos = -1;
+	this.position = -1;
+	this.speed = 2;
+	this.startRay = true;
 };
 
 Player.prototype.update = function() {
-	this.angTarget = (this.force+0.5) * Math.PI;
-	// var dltAngSpd = this.angularAcc*this.force*deltaTime;
-	// this.angularSpd = Math.min(this.angularSpd + dltAngSpd, this.maxAngSpd);
-	var dltPos = this.angTarget-this.angularPos;
-	console.log(dltPos);
-	this.angularSpd = Math.sign(Math.abs(dltPos)>0.02?dltPos:0)*this.maxAngSpd;
-	var dltAngPos = this.angularSpd*deltaTime;
-	this.angularPos += dltAngPos;
-	// if (this.force == 0) {
-	// 	this.angularSpd = Math.max(this.angularSpd - this.maxAngSpd*deltaTime, 0);
-	// }
+	if (this.targetPos == -1)
+		return;
+	var dltPos = this.targetPos-this.position;
+	var currSpeed = Math.sign(Math.abs(dltPos)>0.04?dltPos:0)*this.speed;
+	var changePos = currSpeed*deltaTime;
+	this.position += changePos;
+	console.log(this.position);
 };
 
 Player.prototype.render = function(canvas) {
+	if (this.targetPos == -1)
+		return;
 	canvas.renderPlayer(this);
 };
 
-Player.prototype.applyForce = function(force) {
-	this.force = force;
+Player.prototype.setPosition = function(targetPos) {
+	this.targetPos = targetPos;
+	if (this.startRay && targetPos != -1) {
+		this.position = targetPos;
+		this.startRay = false;
+	} else if (targetPos == -1) {
+		this.startRay = true;
+	}
 };

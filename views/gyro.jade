@@ -1,0 +1,22 @@
+doctype html
+html(lang="en") 
+head 
+	meta(charset="utf-8")
+body
+	p This Example just print's the raw accelerometer and gyro data. Will return null if no device information is found.
+	p gyro.getFeatures:
+		span#features
+		span#example
+	script(src="/js/mobile/gyro.js")
+	script(type='text/javascript').
+		gyro.startTracking(function(o) {
+			var b = document.getElementById('example'),
+					f = document.getElementById('features');
+			f.innerHTML = gyro.getFeatures();
+			b.innerHTML = "<p> x = " + o.x + "</p>" +
+										"<p> y = " + o.y + "</p>" +
+										"<p> z = " + o.z + "</p>" +
+										"<p> alpha = " + o.alpha + "</p>" +
+										"<p> beta = " + o.beta + "</p>" +
+										"<p> gamma = " + o.gamma + "</p>";
+		});

@@ -20,6 +20,7 @@ SocketConfig = function (socket, game) {
 
 	// when the server emits 'newPlayer', this listens and executes
 	socket.on('newPlayer', function (clientId) {
+		console.log('newPlayer');
 		// Add player to the game
 		game.addPlayer(clientId);
 
@@ -31,8 +32,8 @@ SocketConfig = function (socket, game) {
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('position', function (id, force) {
-		game.inputPlayer(id, force);
+	socket.on('position', function (id, position) {
+		game.inputPlayer(id, position);
 	});
 
 	// Start the game (2 player needed)

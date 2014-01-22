@@ -41,6 +41,14 @@ Canvas.prototype.drawImg = function(img, x, y, width, height, deltax, deltaY) {
 };
 
 Canvas.prototype.renderPlayer = function(player) {
-	var dst = 250;
-	this.drawCircle(400 + dst*Math.cos(player.angularPos),300 - dst*Math.sin(player.angularPos), 10);
+	var dst = 600;
+	this.drawCircle(100 + dst*player.position,400, 10);
 };
+
+Canvas.prototype.drawText = function(text, position, size, color) {
+	var ctx = this.context;
+	ctx.fillStyle = color;
+	ctx.font = size + "px Arial";
+	ctx.textAlign = 'center';
+	ctx.fillText(text, position.x, position.y);
+}

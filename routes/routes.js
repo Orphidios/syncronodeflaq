@@ -23,6 +23,7 @@ module.exports = function(app) {
 	// Computer Game Creation
 	app.get('/mobile', Utils.renderer('indexmobile'));
 
+	app.get('/gyro', Utils.renderer('gyro'));
 	/////////////////
 	// POST routes //
 	/////////////////
