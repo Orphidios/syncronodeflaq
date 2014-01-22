@@ -102,7 +102,7 @@ module.exports = function(app, express, io) {
 			});
 
 			socket.on('inputPosition', function (position) {
-				socket.broadcast.to(socket.roomId).emit('position', socket.clientId, position);
+				socket.broadcast.to(socket.roomId).emit('inputPosition', socket.clientId, position);
 			});		
 		});
 	});

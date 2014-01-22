@@ -32,7 +32,8 @@ SocketConfig = function (socket, game) {
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('position', function (id, position) {
+	socket.on('inputPosition', function (id, position) {
+		console.log('inputPosition / id : ' + id + ' / pos : ' + pos);
 		game.inputPlayer(id, position);
 	});
 
