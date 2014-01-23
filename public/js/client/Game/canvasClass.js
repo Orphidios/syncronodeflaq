@@ -15,15 +15,19 @@ Canvas = function(width, height, idCanvas) {
 };
 
 Canvas.prototype.clearCanvas = function() {
-	this.element.width = this.element.width;
+	// this.element.width = this.element.width;
+	var ctx = this.context;
+	ctx.globalAlpha = 1;
+	this.drawBox(0,0,800,600);
+	ctx.globalAlpha = 1;
 };
 
-Canvas.prototype.drawBox = function(x, y, deltaX, deltaY) {
+Canvas.prototype.drawBox = function(x, y, deltaX, deltaY, color) {
 	var ctx = this.context;
-	ctx.strokeStyle = 'green';
+	ctx.fillStyle = color || 'white';
 	ctx.beginPath();
 	ctx.rect(x, y, deltaX, deltaY);
-	ctx.stroke();
+	ctx.fill();
 };
 
 Canvas.prototype.drawCircle = function(x, y, size) {
@@ -40,9 +44,16 @@ Canvas.prototype.drawImg = function(img, x, y, width, height, deltax, deltaY) {
 	ctx.drawImage(img, deltax, deltaY, width, height, (x - width / 2), (y - height / 2), width, height);
 };
 
-Canvas.prototype.renderPlayer = function(player) {
-	var dst = 600;
-	this.drawCircle(100 + dst*player.position,400, 10);
+Canvas.prototype.renderRay = function(player) {
+	var dst = 800;
+	this.drawCircle(dst*player.position,550, 10);
+	var ctx = this.context;
+	ctx.beginPath();
+	ctx.moveTo(400, 50);
+	ctx.lineTo(dst*player.position,550);
+	ctx.strokeStyle = 'black';
+	ctx.lineWidth = 10;
+	ctx.stroke();
 };
 
 Canvas.prototype.drawText = function(text, position, size, color) {

@@ -1,13 +1,12 @@
 Game = function () {
 	console.log('CALL --> Game Constructor');
-	this.players = [];
 	this.mainCanvas = new Canvas(800, 600, "gameCanvas");
-	this.force = null;
 };
 
 // Call for initialisation;
 Game.prototype.init = function() {
 	console.log('CALL --> Game init');
+	this.sheepManager = new SheepManager();
 };
 
 Game.prototype.loop = function() {
@@ -17,32 +16,22 @@ Game.prototype.loop = function() {
 };
 
 Game.prototype.update = function() {
-	for (var i = 0; i < this.players.length; i++ ) {
-		this.players[i].update();
-	}	
+	this.ray.update();
+	this.sheepManager.update();
 };
 
 Game.prototype.render = function(canvas) {
 	this.mainCanvas.clearCanvas();
-	for (var i = 0; i < this.players.length; i++ ) {
-		this.players[i].render(canvas);
-	}		
+	this.ray.render(canvas);
+	this.sheepManager.render(canvas);
 };
 
-Game.prototype.inputPlayer = function(id, position) {
-	var player = this.getPlayerById(id);
-	player.setPosition(position);
+Game.prototype.inputRay = function(position) {
+	this.ray.setPosition(position);
 };
 
-Game.prototype.addPlayer = function(id) {
-	this.players.push(new Player(id));
-};
-
-Game.prototype.getPlayerById = function(playerId) {
-	for (var i = 0; i < this.players.length; i++ ) {
-		if(this.players[i].playerId == playerId)
-			return this.players[i];
-	}
+Game.prototype.createRay = function() {
+	this.ray = new Ray();
 };
 
 Game.perSecond = function() {

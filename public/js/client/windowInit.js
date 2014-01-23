@@ -31,9 +31,6 @@ window.onEachFrame = function(cb) {
 
 //initialisation du canvas et lancement de la boucle
 window.onload = function(){
-	// Init game
-	game.init();
-	
 	// Configure socket with game;
 	SocketConfig(socket, game);
 }
@@ -42,8 +39,9 @@ window.onunload = function() {
 	socket.emit('destroyRoom');
 };
 
-window.startLoop = function()
-{
+window.startLoop = function() {
+	// Init game
+	game.init();
 	onEachFrame(loop);
 }
 

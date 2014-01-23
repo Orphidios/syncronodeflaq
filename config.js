@@ -75,18 +75,12 @@ module.exports = function(app, express, io) {
 					console.log("Code is valid and room exist. Code : " + roomId);
 					// store the room name in the socket session for this client
 					socket.roomId = roomId;
-					// Create a unique Id for this client and store it in the rooms and in the socket
-					var clientId = randomId();
-					while (rooms[roomId].indexOf(clientId) != -1) {clientId = randomId();}
-					rooms[roomId].push(clientId);
-					socket.clientId = clientId;
 					// Mobile join the room
 					socket.join(roomId);
 					// echo to client they're connected
 					socket.emit('roomConnect', roomId);
 					// Send to room that a new player is connected.
-					socket.broadcast.to(roomId).emit('newPlayer', clientId);
-					console.log("Client ID : " + socket.clientId);
+					socket.broadcast.to(roomId).emit('newPlayer');
 					console.log("Room ID : " + socket.roomId);
 				} else {
 					// No room associate with this code
@@ -102,7 +96,7 @@ module.exports = function(app, express, io) {
 			});
 
 			socket.on('inputPosition', function (position) {
-				socket.broadcast.to(socket.roomId).emit('inputPosition', socket.clientId, position);
+				socket.broadcast.to(socket.roomId).emit('inputPosition', position);
 			});		
 		});
 	});

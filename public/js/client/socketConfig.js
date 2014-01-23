@@ -20,22 +20,21 @@ SocketConfig = function (socket, game) {
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('newPlayer', function (clientId) {
-		console.log('newPlayer. Id : ' + clientId);
+	socket.on('newPlayer', function () {
 		// Add player to the game
-		game.addPlayer(clientId);
+		game.createRay();
 
 		// If there is at least 2 player you can start the game
-		if (game.players.length > 0) {
-			launchDiv.style.display = "inline";
-			launchDiv.onclick = startGame;
-		}
+		// if (game.players.length > 0) {
+		// 	launchDiv.style.display = "inline";
+		// 	launchDiv.onclick = startGame;
+		// }
+		startGame();
 	});
 
 	// when the server emits 'newPlayer', this listens and executes
-	socket.on('inputPosition', function (id, position) {
-		console.log('inputPosition / id : ' + id + ' / pos : ' + position);
-		game.inputPlayer(id, position);
+	socket.on('inputPosition', function (position) {
+		game.inputRay(position);
 	});
 
 	// Start the game (2 player needed)
