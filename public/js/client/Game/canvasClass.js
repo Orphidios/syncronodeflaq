@@ -46,7 +46,7 @@ Canvas.prototype.drawImg = function(img, x, y, width, height, deltax, deltaY) {
 
 Canvas.prototype.renderRay = function(player) {
 	var dst = 800;
-	this.drawCircle(dst*player.position,550, 10);
+	this.drawCircle(dst*player.position,550, 40);
 	var ctx = this.context;
 	ctx.beginPath();
 	ctx.moveTo(400, 50);
