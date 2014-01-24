@@ -1,5 +1,5 @@
 Eyes = function () {
-
+	this.position = new Vector;
 };
 
 Eyes.prototype.update = function() {

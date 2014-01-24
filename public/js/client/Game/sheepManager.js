@@ -1,5 +1,8 @@
 SheepManager = function () {
 	this.sheeps = [];
+};
+
+SheepManager.prototype.init = function() {
 	for(var i=0; i<10; i++) {
 		this.createSheep();
 	}

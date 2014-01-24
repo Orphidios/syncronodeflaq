@@ -1,12 +1,12 @@
 Game = function () {
-	console.log('CALL --> Game Constructor');
 	this.mainCanvas = new Canvas(800, 600, "gameCanvas");
+	this.sheepManager = new SheepManager();
+	this.ray = new Ray();
 };
 
 // Call for initialisation;
 Game.prototype.init = function() {
-	console.log('CALL --> Game init');
-	this.sheepManager = new SheepManager();
+	this.sheepManager.init();
 };
 
 Game.prototype.loop = function() {
@@ -28,10 +28,6 @@ Game.prototype.render = function(canvas) {
 
 Game.prototype.inputRay = function(position) {
 	this.ray.setPosition(position);
-};
-
-Game.prototype.createRay = function() {
-	this.ray = new Ray();
 };
 
 Game.perSecond = function() {
